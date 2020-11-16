@@ -35,7 +35,7 @@ The `create-data-config.json` configuration file (under conf/ directory) has the
 Steps to execute this code:
 
 - Download and extract ([ThumosDataset](https://drive.google.com/drive/folders/1VWx35zK6tUbTS-lzE03M4Bc74rd_XIcG)).
-- Write 'create-data-config.json'.
+- Create 'create-data-config.json'.
 - Execute the following command under src directory: ``` python3 CreateData.py ```
 
 ### Get Feature Extractor Model
