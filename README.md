@@ -18,7 +18,7 @@ The following dependencies must be installed to run this project:
 
 Extract frames from videos and save on an organized directory.
 
-The `create-data-config.json` configuration file has the following structure:
+The `create-data-config.json` configuration file (under conf/ directory) has the following structure:
 
 ```
 {
@@ -28,15 +28,15 @@ The `create-data-config.json` configuration file has the following structure:
 }
 ```
 
-- inputDataset: directory to load video data (Download [ThumosDataset](https://drive.google.com/drive/folders/1VWx35zK6tUbTS-lzE03M4Bc74rd_XIcG)).
+- inputDataset: directory to load video data.
 - outputDataset: directory to save image data.
 - classes: classes to extract frames.
 
-Execute the following command under src directory:
+Steps to execute this code:
 
-```
-python3 CreateData.py
-```
+- Download and extract ([ThumosDataset](https://drive.google.com/drive/folders/1VWx35zK6tUbTS-lzE03M4Bc74rd_XIcG)).
+- Write 'create-data-config.json'.
+- Execute the following command under src directory: ``` python3 CreateData.py ```
 
 ### Get Feature Extractor Model
 
