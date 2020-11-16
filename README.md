@@ -6,7 +6,7 @@ Modified version of the following work: [Temporal Recurrent Networks for Online 
 
 The following dependencies must be installed to run this project:
 
-- Python3: pip3 install python3-pip
+- Python3: sudo apt install python3-pip
 - Numpy: pip3 install numpy
 - Tensorflow: pip3 install tensorflow
 - Keras: pip3 install keras
