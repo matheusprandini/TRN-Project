@@ -1,0 +1,5 @@
+{
+    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosDataset/",
+    "outputDataset": "/home/matheus_prandini/Doutorado/ThumosImageData/",
+    "classes": ["HighJump", "LongJump", "BasketballDunk"]
+}
