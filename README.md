@@ -10,7 +10,7 @@ The following dependencies must be installed to run this project:
 - Numpy: pip3 install numpy
 - Tensorflow: pip3 install tensorflow
 - Keras: pip3 install keras
-- OpenCv: pip3 install opencv-python
+- OpenCv: pip3 install opencv-python (needs to upgrade pip: pip3 install --upgrade pip)
 
 ## Execution
 
