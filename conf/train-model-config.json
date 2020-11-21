@@ -1,0 +1,15 @@
+{
+    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosImageData/train/",
+    "modelInfo": {
+        "featureExtractor": "MobileNetV2",
+        "numClasses": 3,
+        "trnLayerType": "lstm"
+    },
+    "hyperparameters": {
+        "epochs": 10,
+        "learningRate": 0.0005
+    },
+    "resultInfo": {
+        "finalModelFilename": "trn_mobilenetv2_lstm"
+    }
+}

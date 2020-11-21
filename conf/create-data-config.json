@@ -1,5 +1,12 @@
 {
-    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosDataset/",
-    "outputDataset": "/home/matheus_prandini/Doutorado/ThumosImageData/",
-    "classes": ["HighJump", "LongJump", "BasketballDunk"]
+    "datasetInfo": {
+        "inputDataset": "/home/matheus_prandini/Doutorado/ThumosDataset/train/",
+        "outputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData/train/",
+        "classes": ["HighJump", "LongJump", "BasketballDunk"],
+        "chunkSize": 6,
+         "imageSize": 224
+    },
+    "featureExtractor": {
+        "name": "MobileNetV2"
+    }
 }
