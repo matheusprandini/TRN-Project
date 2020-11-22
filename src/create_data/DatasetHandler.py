@@ -4,7 +4,7 @@ import glob
 import sys
 import numpy as np
 from os import path
-from Model.FeatureExtractorFactory import FeatureExtractorFactory
+from feature_extractor.Factory.FeatureExtractorFactory import FeatureExtractorFactory
 
 class DatasetHandler():
 

@@ -1,5 +1,5 @@
-from Utils.JsonHandler import JsonHandler
-from Data.DatasetHandler import DatasetHandler
+from utils.JsonHandler import JsonHandler
+from DatasetHandler import DatasetHandler
 
 if __name__ == '__main__':
     

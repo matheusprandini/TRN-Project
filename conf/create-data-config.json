@@ -4,7 +4,7 @@
         "outputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData/train/",
         "classes": ["HighJump", "LongJump", "BasketballDunk"],
         "chunkSize": 6,
-         "imageSize": 224
+        "imageSize": 224
     },
     "featureExtractor": {
         "name": "MobileNetV2"
