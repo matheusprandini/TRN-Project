@@ -1,0 +1,15 @@
+{
+    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData/train/",
+    "modelInfo": {
+        "hiddenLayerSize": 1280, 
+        "numClasses": 3,
+        "trnType": "lstm"
+    },
+    "hyperparameters": {
+        "epochs": 10,
+        "learningRate": 0.01
+    },
+    "resultInfo": {
+        "finalModelFilename": "trn_mobilenetv2_lstm"
+    }
+}
