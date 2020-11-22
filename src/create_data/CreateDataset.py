@@ -1,10 +1,15 @@
+import sys
+from os import path
+
+sys.path.append(path.join(path.dirname(__file__), '..'))
+
 from utils.JsonHandler import JsonHandler
 from DatasetHandler import DatasetHandler
 
 if __name__ == '__main__':
     
     # Read config file
-    configFile = JsonHandler.read_json("../conf/create-data-config.json")
+    configFile = JsonHandler.read_json("../../conf/create-data-config.json")
 
     inputDataset = configFile["datasetInfo"]["inputDataset"]
     outputDataset = configFile["datasetInfo"]["outputDataset"]

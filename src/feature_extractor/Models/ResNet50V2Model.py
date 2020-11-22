@@ -10,8 +10,5 @@ class ResNet50V2Model():
             inputs=baseModel.input,
             outputs=baseModel.get_layer('avg_pool').output
         )
-
-        for layer in model.layers:
-            layer.trainable = False
         
         return model

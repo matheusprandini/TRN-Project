@@ -1,6 +1,6 @@
-from FeatureExtractorEntity.MobileNetV2 import MobileNetV2Model
-from FeatureExtractorEntity.ResNet50V2Model import ResNet50V2Model
-from FeatureExtractorEntity.VGG16Model import VGG16Model
+from ..Models.MobileNetV2 import MobileNetV2Model
+from ..Models.ResNet50V2Model import ResNet50V2Model
+from ..Models.VGG16Model import VGG16Model
 
 class FeatureExtractorFactory():
     modelNameToFeatureExtractorModel = {

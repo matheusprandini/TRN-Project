@@ -10,8 +10,5 @@ class MobileNetV2Model():
             inputs=baseModel.input,
             outputs=baseModel.get_layer('global_average_pooling2d').output
         )
-    
-        for layer in model.layers:
-            layer.trainable = False
         
         return model

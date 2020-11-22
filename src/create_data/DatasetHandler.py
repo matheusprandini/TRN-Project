@@ -63,8 +63,8 @@ class DatasetHandler():
 
             # Save preprocessed data
             data = np.array(data)
-            preprocessedData = self.featureExtractorModel.predict(data).flatten()
-            np.save(path + chunkName, preprocessedData.reshape(preprocessedData.shape[0],1))
+            preprocessedData = self.featureExtractorModel.predict(data)
+            np.save(path + chunkName, preprocessedData)
 
             # Update Chunk count
             chunkCount += 1
