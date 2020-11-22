@@ -4,7 +4,8 @@ class DataPartitions():
 
     classLabels = {"HighJump": 0, "LongJump": 1, "BasketballDunk": 2}
 
-    def create_partitions_and_labels(self, dataPath):
+    @staticmethod
+    def create_partitions_and_labels(dataPath):
         partition = []
         labels = {}
         
@@ -19,6 +20,6 @@ class DataPartitions():
                 for chunk in allChunks:
                     chunkPath = allChunksPath + chunk
                     partition.append(chunkPath)
-                    labels[chunkPath] = self.classLabels[classFolder]
+                    labels[chunkPath] = DataPartitions.classLabels[classFolder]
 
         return partition, labels

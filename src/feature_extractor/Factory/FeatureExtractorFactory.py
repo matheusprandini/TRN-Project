@@ -9,7 +9,8 @@ class FeatureExtractorFactory():
         "VGG16": VGG16Model()
     }
 
-    def get_model(self, name, weights="imagenet", includeTop=True, inputShape=(224,224,3)):
-        if name not in self.modelNameToFeatureExtractorModel:
+    @staticmethod
+    def get_model(name, weights="imagenet", includeTop=True, inputShape=(224,224,3)):
+        if name not in FeatureExtractorFactory.modelNameToFeatureExtractorModel:
             return None
-        return self.modelNameToFeatureExtractorModel[name].build_model(weights, includeTop, inputShape)
+        return FeatureExtractorFactory.modelNameToFeatureExtractorModel[name].build_model(weights, includeTop, inputShape)

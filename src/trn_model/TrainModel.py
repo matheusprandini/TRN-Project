@@ -24,7 +24,7 @@ if __name__ == '__main__':
     learningRate = int(configFile["hyperparameters"]["learningRate"])
     finalModelFilename = configFile["resultInfo"]["finalModelFilename"]
 
-    partition, labels = DataPartitions().create_partitions_and_labels(inputDataset)
+    partition, labels = DataPartitions.create_partitions_and_labels(inputDataset)
     trainGenerator = DataGenerator(partition, labels)
 
     trn = TRNFactory.get_model(trnType)

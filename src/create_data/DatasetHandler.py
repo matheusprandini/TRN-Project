@@ -14,7 +14,7 @@ class DatasetHandler():
         self.classes = classes # Classes to extract information
         self.chunkSize = chunkSize # Chunk size
         self.imageSize = imageSize # Image size
-        self.featureExtractorModel = FeatureExtractorFactory().get_model(featureExtractorName) # Feature extractor model
+        self.featureExtractorModel = FeatureExtractorFactory.get_model(featureExtractorName) # Feature extractor model
 
     def create_data(self):
         for className in self.classes:
