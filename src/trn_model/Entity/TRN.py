@@ -1,13 +1,12 @@
 import keras as K
-from keras.models import Model
-from keras.layers import Input, Dense, Flatten, Reshape, Dropout
-from keras.layers.recurrent import LSTM
+from feature_extractor.Factory.FeatureExtractorFactory import FeatureExtractorFactory
 
 
 class TRN():
 
-    def __init__(self):
+    def __init__(self, featureExtractorName):
         self.model = None
+        self.featureExtractor = FeatureExtractorFactory.get_model(featureExtractorName)
 
     def compile_model(self, learningRate):
         self.model.compile(loss="categorical_crossentropy", optimizer=K.optimizers.Adam(
@@ -15,3 +14,8 @@ class TRN():
 
     def train_model(self, trainGenerator, numEpochs):
         self.model.fit(trainGenerator, epochs=numEpochs)
+
+    def predict(self, chunk):
+        features = self.featureExtractor.predict(chunk)
+        prediction = self.model.predict(features)
+        return prediction

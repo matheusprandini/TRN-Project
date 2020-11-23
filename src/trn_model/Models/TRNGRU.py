@@ -6,8 +6,8 @@ from Entity.TRN import TRN
 
 class TRNGRU(TRN):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, featureExtractorName):
+        super().__init__(featureExtractorName)
 
     def build_model(self, numFeatures, numClasses):
         self.model = K.models.Sequential()

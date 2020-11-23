@@ -1,0 +1,9 @@
+{
+    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData/test/",
+    "modelInfo": {
+        "path": "trn_mobilenetv2_lstm.h5df"
+    },
+    "featureExtractor": {
+        "name": "MobileNetV2"
+    }
+}
