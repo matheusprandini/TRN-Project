@@ -1,34 +1,58 @@
 import sys
-import os
-import keras as K
+import glob
 import numpy as np
 from os import path
+from Data.Labels import Labels
 from Factory.TRNFactory import TRNFactory
-from Data.DataGenerator import DataGenerator
-from Data.DataPartitions import DataPartitions
 
 sys.path.append(path.join(path.dirname(__file__), '..'))
 
 from utils.JsonHandler import JsonHandler
 
+def get_test_results(datasetPath, model):
+    rightPredictions = 0
+    wrongPredictions = 0
+    classes = list(Labels.get_classes().keys())
+    for className in classes:
+        print("Testing " + className + "...")
+
+        videosPath = datasetPath + className + "/"
+        videos = sorted(glob.glob(videosPath + "*"))
+
+        actionLabel = Labels.get_classes()[className]
+
+        for video in videos:
+            chunks = glob.glob(video + "/*")
+            chunks.sort()
+
+            probabilities = []
+            for chunk in chunks:
+                sample = np.load(chunk)
+                sample = sample.reshape(-1, sample.shape[0], sample.shape[1])
+                predictions = model.predict(sample)
+                probabilities.append(predictions)
+
+            probabilitiesMean = np.mean(probabilities, axis=0) 
+            action = np.argmax(probabilitiesMean)
+            if action == actionLabel:
+                rightPredictions += 1
+            else:
+                wrongPredictions += 1
+
+    print(rightPredictions, wrongPredictions)
+
 if __name__ == '__main__':
 
     # Read config file
-    configFile = JsonHandler.read_json("../../conf/train-trn-model-config.json")
+    configFile = JsonHandler.read_json("../../conf/test-trn-model-config.json")
 
-    inputDataset = configFile["inputDataset"]
-    hiddenLayerSize = int(configFile["modelInfo"]["hiddenLayerSize"])
-    numClasses = int(configFile["modelInfo"]["numClasses"])
+    testDataset = configFile["datasetInfo"]["test"]
+
+    modelPath = configFile["modelInfo"]["path"]
     trnType = configFile["modelInfo"]["trnType"]
-    epochs = int(configFile["hyperparameters"]["epochs"])
-    learningRate = int(configFile["hyperparameters"]["learningRate"])
-    finalModelFilename = configFile["resultInfo"]["finalModelFilename"]
+    featureExtractorName = configFile["modelInfo"]["featureExtractor"]
 
-    partition, labels = DataPartitions.create_partitions_and_labels(inputDataset)
-    trainGenerator = DataGenerator(partition, labels)
+    trn = TRNFactory.get_model(trnType, featureExtractorName)
+    trn.load_model(modelPath)
 
-    trn = TRNFactory.get_model(trnType)
-    trn.build_model(hiddenLayerSize, numClasses)
-    trn.compile_model(learningRate)
-    trn.train_model(trainGenerator, epochs)
-
+    get_test_results(testDataset, trn)

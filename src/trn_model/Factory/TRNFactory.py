@@ -3,12 +3,12 @@ from Models.TRNGRU import TRNGRU
 
 class TRNFactory():
     typeToModel = {
-        "lstm": TRNLSTM(),
-        "GRU": TRNGRU()
+        "lstm": TRNLSTM,
+        "GRU": TRNGRU
     }
 
     @staticmethod
-    def get_model(typeName):
+    def get_model(typeName, featureExtractorName):
         if typeName not in TRNFactory.typeToModel:
             return None
-        return TRNFactory.typeToModel[typeName]
+        return TRNFactory.typeToModel[typeName](featureExtractorName)

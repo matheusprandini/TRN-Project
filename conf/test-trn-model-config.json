@@ -1,9 +1,10 @@
 {
-    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData/test/",
-    "modelInfo": {
-        "path": "trn_mobilenetv2_lstm.h5df"
+    "datasetInfo": {
+        "test": "/home/matheus_prandini/Doutorado/ThumosChunkData20ClassesMobileNetV2/test/"
     },
-    "featureExtractor": {
-        "name": "MobileNetV2"
+    "modelInfo": {
+        "path": "/home/matheus_prandini/Doutorado/TRN-Project/trained-models/trn_mobilenetv2_lstm.h5",
+        "trnType": "lstm",
+        "featureExtractor": "MobileNetV2"
     }
 }

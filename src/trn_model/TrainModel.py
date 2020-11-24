@@ -16,19 +16,31 @@ if __name__ == '__main__':
     # Read config file
     configFile = JsonHandler.read_json("../../conf/train-trn-model-config.json")
 
-    inputDataset = configFile["inputDataset"]
+    trainDataset = configFile["datasetInfo"]["train"]
+    validationDataset = configFile["datasetInfo"]["validation"]
+    
+    numTimesteps = int(configFile["modelInfo"]["numTimesteps"])
     hiddenLayerSize = int(configFile["modelInfo"]["hiddenLayerSize"])
     numClasses = int(configFile["modelInfo"]["numClasses"])
     trnType = configFile["modelInfo"]["trnType"]
+    featureExtractorName = configFile["modelInfo"]["featureExtractor"]
+    
     epochs = int(configFile["hyperparameters"]["epochs"])
     learningRate = int(configFile["hyperparameters"]["learningRate"])
+    
     finalModelFilename = configFile["resultInfo"]["finalModelFilename"]
 
-    partition, labels = DataPartitions.create_partitions_and_labels(inputDataset)
-    trainGenerator = DataGenerator(partition, labels)
+    partitions = {}
+    labels = {}
 
-    trn = TRNFactory.get_model(trnType)
-    trn.build_model(hiddenLayerSize, numClasses)
+    partitions["train"], labels["train"] = DataPartitions.create_partitions_and_labels(trainDataset)
+    partitions["validation"], labels["validation"] = DataPartitions.create_partitions_and_labels(validationDataset)
+    
+    trainGenerator = DataGenerator(partitions["train"], labels["train"])
+    validationGenerator = DataGenerator(partitions["validation"], labels["validation"])
+
+    trn = TRNFactory.get_model(trnType, featureExtractorName)
+    trn.build_model(numTimesteps, hiddenLayerSize, numClasses)
     trn.compile_model(learningRate)
     trn.train_model(trainGenerator, epochs)
 
