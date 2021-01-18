@@ -1,9 +1,14 @@
 {
-    "inputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData/train/",
+    "datasetInfo": {
+        "train": "/home/matheus_prandini/Doutorado/ThumosChunkData20ClassesMobileNetV2/train/",
+        "validation": "/home/matheus_prandini/Doutorado/ThumosChunkData20ClassesMobileNetV2/validation/"
+    },
     "modelInfo": {
+        "numTimesteps": 6,
         "hiddenLayerSize": 1280, 
-        "numClasses": 3,
-        "trnType": "lstm"
+        "numClasses": 20,
+        "trnType": "lstm",
+        "featureExtractor": "MobileNetV2"
     },
     "hyperparameters": {
         "epochs": 10,

@@ -49,7 +49,10 @@ class DatasetHandler():
         for i in range(0, len(frames), self.chunkSize):
 
             # Filename
-            chunkName = "chunk_" + str(chunkCount)
+            if chunkCount < 10:
+                chunkName = "chunk_" + "0" + str(chunkCount)
+            else:
+                chunkName = "chunk_" + str(chunkCount)
 
             # Get data (frames)
             data = frames[i:i+self.chunkSize]

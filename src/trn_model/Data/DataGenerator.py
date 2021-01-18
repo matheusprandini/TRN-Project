@@ -3,7 +3,7 @@ import numpy as np
 
 class DataGenerator(K.utils.Sequence):
 
-    def __init__(self, listIDs, labels, dim=(7680,1), batchSize=4, numClasses=3, shuffle=False):
+    def __init__(self, listIDs, labels, dim=(6,1280), batchSize=8, numClasses=20, shuffle=True):
         self.listIDs = listIDs
         self.labels = labels
         self.batchSize = batchSize

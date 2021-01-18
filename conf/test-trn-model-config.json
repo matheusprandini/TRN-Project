@@ -1,0 +1,8 @@
+{
+    "datasetInfo": {
+        "test": "/home/matheus_prandini/Doutorado/MarioVideos/Videos/test/"
+    },
+    "modelInfo": {
+        "path": "/home/matheus_prandini/Doutorado/TRN-Project/trained-models/Mario/trn_ResNet50V2_cnn_v5.h5"
+    }
+}

@@ -1,14 +1,14 @@
 import os
+from Labels import Labels
+
 
 class DataPartitions():
-
-    classLabels = {"HighJump": 0, "LongJump": 1, "BasketballDunk": 2}
 
     @staticmethod
     def create_partitions_and_labels(dataPath):
         partition = []
         labels = {}
-        
+
         allFiles = os.listdir(dataPath)
 
         for classFolder in allFiles:
@@ -20,6 +20,6 @@ class DataPartitions():
                 for chunk in allChunks:
                     chunkPath = allChunksPath + chunk
                     partition.append(chunkPath)
-                    labels[chunkPath] = DataPartitions.classLabels[classFolder]
+                    labels[chunkPath] = Labels.get_classes()[classFolder]
 
         return partition, labels

@@ -6,14 +6,12 @@ from Entity.TRN import TRN
 
 class TRNGRU(TRN):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, featureExtractorName):
+        super().__init__(featureExtractorName)
 
-    def build_model(self, numFeatures, numClasses):
+    def build_model(self, numTimesteps, numFeatures, numClasses):
         self.model = K.models.Sequential()
-        self.model.add(Input(shape=(numFeatures, 1)))
-        self.model.add(GRU(numFeatures, dropout=0.1))
+        self.model.add(GRU(numFeatures, input_shape=(numTimesteps, numFeatures), dropout=0.1))
         self.model.add(Dense(512, activation="relu"))
-        self.model.add(Dropout(0.5))
         self.model.add(Dense(numClasses, activation="softmax"))
         print(self.model.summary())
