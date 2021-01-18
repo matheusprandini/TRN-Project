@@ -1,15 +1,12 @@
 {
     "datasetInfo": {
-        "inputDataset": "/home/matheus_prandini/Doutorado/ThumosDataset/train/",
-        "outputDataset": "/home/matheus_prandini/Doutorado/ThumosChunkData20ClassesVGG16/train/",
-        "classes": ["BaseballPitch", "BasketballDunk", "Billiards", "CleanAndJerk", "CliffDiving",
-            "CricketBowling", "CricketShot", "Diving", "FrisbeeCatch", "GolfSwing", "HammerThrow",
-            "HighJump", "JavelinThrow", "LongJump", "PoleVault", "Shotput", "SoccerPenalty", 
-            "TennisSwing", "ThrowDiscus", "VolleyballSpiking"],
-        "chunkSize": 6,
+        "inputDataset": "/home/matheus_prandini/Doutorado/MarioDataset/train/",
+        "outputDataset": "/home/matheus_prandini/Doutorado/MarioChunkData2ClassesResNet50V2/train/",
+        "classes": ["Jumping", "ShootingFire"],
+        "chunkSize": 8,
         "imageSize": 224
     },
     "featureExtractor": {
-        "name": "VGG16"
+        "name": "ResNet50V2"
     }
 }

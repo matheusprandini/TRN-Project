@@ -1,11 +1,13 @@
 import keras as K
+import time
+from feature_extractor.Factory.FeatureExtractorFactory import FeatureExtractorFactory
 
 
 class TRN():
 
     def __init__(self, featureExtractorName):
         self.model = None
-        #self.featureExtractor = FeatureExtractorFactory.get_model(featureExtractorName)
+        self.featureExtractor = FeatureExtractorFactory.get_model(featureExtractorName)
 
     def load_model(self, path):
         self.model = K.models.load_model(path)
@@ -19,6 +21,8 @@ class TRN():
         self.model.fit(trainGenerator, epochs=numEpochs)
 
     def predict(self, chunk):
-        #features = self.featureExtractor.predict(chunk)
-        prediction = self.model.predict(chunk)
-        return prediction
+        initialTime = time.time()
+        features = self.featureExtractor.predict(chunk)
+        prediction = self.model.predict(features.reshape(1, features.shape[0], features.shape[1], 1))
+        totalTime = time.time() - initialTime
+        return prediction, totalTime
