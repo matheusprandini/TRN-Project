@@ -1,10 +1,14 @@
+from Models.TRNCNN import TRNCNN
+from Models.TRNConvLSTM import TRNConvLSTM
 from Models.TRNLSTM import TRNLSTM
 from Models.TRNGRU import TRNGRU
 
 class TRNFactory():
     typeToModel = {
         "lstm": TRNLSTM,
-        "GRU": TRNGRU
+        "gru": TRNGRU,
+        "cnn": TRNCNN,
+        "convlstm": TRNConvLSTM
     }
 
     @staticmethod

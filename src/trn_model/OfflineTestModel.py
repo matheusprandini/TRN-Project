@@ -3,11 +3,11 @@ import glob
 import time
 import numpy as np
 from os import path
-from Data.Labels import Labels
-from Entity.TRN import TRN
 
 sys.path.append(path.join(path.dirname(__file__), '..'))
 
+from Data.Labels import Labels
+from Factory.TRNFactory import TRNFactory
 from utils.JsonHandler import JsonHandler
 
 def get_test_results(datasetPath, model):
@@ -19,7 +19,6 @@ def get_test_results(datasetPath, model):
 
         videosPath = datasetPath + className + "/"
         videos = sorted(glob.glob(videosPath + "*"))
-
         actionLabel = Labels.get_classes()[className]
 
         localCorrectPredictions = 0
@@ -40,8 +39,9 @@ def get_test_results(datasetPath, model):
                 predictionsTime.append(predictionTime)
                 probabilities.append(predictions)
 
-            probabilitiesMean = np.mean(probabilities, axis=0) 
+            probabilitiesMean = np.mean(probabilities, axis=0)[0]
             action = np.argmax(probabilitiesMean)
+
             if action == actionLabel:
                 localCorrectPredictions += 1
             else:
@@ -64,8 +64,10 @@ if __name__ == '__main__':
 
     testDataset = configFile["datasetInfo"]["test"]
     modelPath = configFile["modelInfo"]["path"]
+    modelType = configFile["modelInfo"]["trnType"]
+    modelFeatureExtractor = configFile["modelInfo"]["featureExtractor"]
 
-    trn = TRN("")
+    trn = TRNFactory.get_model(modelType, modelFeatureExtractor)
     trn.load_model(modelPath)
 
     get_test_results(testDataset, trn)

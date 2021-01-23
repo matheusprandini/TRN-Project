@@ -1,9 +1,9 @@
 import os
-import cv2
 import glob
 import sys
 import numpy as np
 from os import path
+from VideoFramesHandler import VideoFramesHandler
 from feature_extractor.Factory.FeatureExtractorFactory import FeatureExtractorFactory
 
 class DatasetHandler():
@@ -36,7 +36,7 @@ class DatasetHandler():
                 os.makedirs(saveVideoPath, exist_ok=True)
                 
                 # Extract all frames
-                videoFrames = self.extract_frames(filepath)
+                videoFrames = VideoFramesHandler.extract_frames(filepath, self.imageSize)
                 
                 # Save frames in chunks
                 self.process_chunk_data(saveVideoPath, videoFrames)
@@ -71,32 +71,3 @@ class DatasetHandler():
 
             # Update Chunk count
             chunkCount += 1
-
-
-    ## Read video file and return all frames
-    def extract_frames(self, filepath):
-
-        # Retrieves video information
-        video = cv2.VideoCapture(filepath)
-        frames = []
-
-        try:
-            while True:
-                # Get current state
-                ret, frame = video.read()
-                
-                if not ret:
-                    break
-
-                # Resized frame
-                frame = cv2.resize(frame, self.imageSize)
-
-                # Normalized frame
-                frame = frame / 255.0
-                
-                # Append frame
-                frames.append(frame)
-        finally:
-            video.release()
-            
-        return frames
