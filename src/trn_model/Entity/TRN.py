@@ -19,10 +19,11 @@ class TRN():
 
     def train_model(self, trainGenerator, numEpochs):
         self.model.fit(trainGenerator, epochs=numEpochs)
-
-    def predict(self, chunk):
+    
+    def predict(self, chunk, chunkShape, generateFeatures=False):
         initialTime = time.time()
-        features = self.featureExtractor.predict(chunk)
-        prediction = self.model.predict(features.reshape(1, features.shape[0], features.shape[1], 1))
+        if generateFeatures:
+            chunk = self.featureExtractor.predict(chunk)
+        prediction = self.model.predict(chunk.reshape(chunkShape))
         totalTime = time.time() - initialTime
         return prediction, totalTime

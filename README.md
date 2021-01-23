@@ -36,14 +36,96 @@ Steps to execute this code:
 
 - Download and extract ([ThumosDataset](https://drive.google.com/drive/folders/1VWx35zK6tUbTS-lzE03M4Bc74rd_XIcG)).
 - Create 'create-data-config.json'.
-- Execute the following command under src directory: ``` python3 CreateData.py ```
+- Execute the following command under **src/create_data** directory: ``` python3 CreateDataset.py ```
 
-### Get Feature Extractor Model
+### Train Model
 
-Build the feature extractor model based on VGG16.
+It is possible to train models locally or in the cloud using ([Google Colab](https://colab.research.google.com/ogle.com/drive/folders/1VWx35zK6tUbTS-lzE03M4Bc74rd_XIcG)).
 
-Execute the following command under src directory:
+#### Locally
+
+The `train-trn-model-config.json` configuration file (under conf/ directory) has the following structure:
 
 ```
-python3 FeatureExtractorModel.py
+{
+    "datasetInfo": {
+        "train": "/path/to/train/dir/",
+        "validation": "/path/to/validation/dir/"
+    },
+    "modelInfo": {
+        "numTimesteps": number of time steps used by a recurrent model,
+        "hiddenLayerSize": number of neurons of the hidden layers, 
+        "numClasses": number of classes,
+        "trnType": type of TRN model ("cnn", "convlstm", "gru" or "lstm"),
+        "featureExtractor": type of feature extractor model ("MobileNetV2", "ResNet50V2", "VGG16")
+    },
+    "hyperparameters": {
+        "epochs": number of epochs to train the model,
+        "learningRate": learning rate used to train the model
+    },
+    "resultInfo": {
+        "finalModelFilename": name of the final model
+    }
+}
+```
+
+Besides this, it is necessary to define the classes and their labels in the `labels.json` configuration file (under conf/ directory) has the following structure:
+
+```
+{
+    "classes": {"class0": 0, "class1": 1,  "class2": 1, ...}
+}
+```
+
+Execute the following command under **src/trn_model** directory:
+
+```
+python3 TrainModel.py
+```
+
+#### Google Colab
+
+Execute the steps provided in this ([Jupyter Notebook](https://colab.research.google.com/drive/1uD0qbmM-MimaDDhcDrNCxkorujY3Lf6f)).
+
+### Test Model
+
+It is possible to test the models trained using two strategies: **offline** and **online**.
+
+The `test-trn-model-config.json` configuration file (under conf/ directory) has the following structure:
+
+```
+{
+    "datasetInfo": {
+        "test": "/path/to/test/dir/"
+    },
+    "modelInfo": {
+        "path": "/path/to/model/model_name.h5",
+        "trnType": type of TRN model ("cnn", "convlstm", "gru" or "lstm"),
+        "featureExtractor": type of feature extractor model ("MobileNetV2", "ResNet50V2", "VGG16")
+    }
+}
+```
+
+Besides this, it is necessary to define the classes and their labels in the `labels.json` configuration file (under conf/ directory) has the following structure:
+
+```
+{
+    "classes": {"class0": 0, "class1": 1,  "class2": 1, ...}
+}
+```
+
+#### Offline
+
+Execute the following command under **src/trn_model** directory:
+
+```
+python3 OfflineTestModel.py
+```
+
+#### Online
+
+Execute the following command under **src/trn_model** directory:
+
+```
+python3 OnlineTestModel.py
 ```

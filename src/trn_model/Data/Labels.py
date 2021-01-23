@@ -1,12 +1,8 @@
+from utils.JsonHandler import JsonHandler
+
 class Labels():
 
-    '''classes = {'BaseballPitch': 0, 'BasketballDunk': 1,  'CleanAndJerk': 3,
-                   'CricketBowling': 4, 'CricketShot': 5, 'CliffDiving': 6, 'Diving': 7,
-                   'FrisbeeCatch': 8, 'GolfSwing': 9, 'HammerThrow': 10, 'HighJump': 11,
-                   'JavelinThrow': 12, 'LongJump': 13, 'PoleVault': 14, 'SoccerPenalty': 15,
-                   'Shotput': 16, 'TennisSwing': 17, 'ThrowDiscus': 18, 'VolleyballSpiking': 19}'''
-
-    classes = {'Jumping': 0, 'ShootingFire': 1}
+    classes = JsonHandler.read_json("../../conf/labels.json")["classes"]
 
     @staticmethod
     def get_classes():

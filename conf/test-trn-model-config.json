@@ -1,8 +1,10 @@
 {
     "datasetInfo": {
-        "test": "/home/matheus_prandini/Doutorado/MarioVideos/Videos/test/"
+        "test": "/home/matheus_prandini/Doutorado/ThumosChunkData20ClassesMobileNetV2/test/"
     },
     "modelInfo": {
-        "path": "/home/matheus_prandini/Doutorado/TRN-Project/trained-models/Mario/trn_ResNet50V2_cnn_v5.h5"
+        "path": "/home/matheus_prandini/Doutorado/trained-models/Thumos/trn_mobilenetv2_convlstm_v4.h5",
+        "trnType": "convlstm",
+        "featureExtractor": "MobileNetV2"
     }
 }
